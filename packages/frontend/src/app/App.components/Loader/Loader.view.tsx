@@ -1,19 +1,16 @@
 import * as React from 'react'
 
-import { LoaderStyled } from './Loader.style'
+import { LoaderContainer, LoaderImg, LoaderWrapper } from './Loader.style'
 
-export const Loader = () => (
-  <LoaderStyled>
-    <div className="loading">
-      <div className="loading__square"></div>
-      <div className="loading__square"></div>
-      <div className="loading__square"></div>
-      <div className="loading__square"></div>
-      <div className="loading__square"></div>
-      <div className="loading__square"></div>
-      <div className="loading__square"></div>
-    </div>
-  </LoaderStyled>
+interface LoaderProps {
+  width?: string
+}
+export const Loader = ({ width = '230px' }: LoaderProps) => (
+  <LoaderContainer>
+    <LoaderWrapper width={width}>
+      <LoaderImg src="/images/transaction-loader.png" alt="" />
+    </LoaderWrapper>
+  </LoaderContainer>
 )
 
 Loader.propTypes = {}

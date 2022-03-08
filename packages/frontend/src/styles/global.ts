@@ -1,6 +1,6 @@
-import { createGlobalStyle } from 'styled-components/macro'
+import { createGlobalStyle } from "styled-components/macro";
 
-import { placeholderColor, subTextColor, textColor } from './colors'
+import { placeholderColor, subTextColor, textColor } from "./colors";
 
 export const GlobalStyle = createGlobalStyle`
 * {
@@ -89,4 +89,9 @@ p {
     margin-inline-start: 0px;
     margin-inline-end: 0px;
 }
-`
+
+@keyframes spin {
+    from {transform:rotate(0deg);}
+    to {transform:rotate(360deg);}
+}
+`;

@@ -1,6 +1,7 @@
 import { GifsStyled, GifsContainer } from "./Gifs.style";
 import { GifItem } from "./GifItem/GifItem.controller";
 import { checkGifLink } from "utils";
+import { Loader } from "app/App.components/Loader/Loader.view";
 interface GifsProps {
   gifList: any;
   loading: boolean;
@@ -28,7 +29,7 @@ export const GifsView = ({ gifList, loading }: GifsProps) => {
             })}
         </GifsContainer>
       )}
-      {loading && <>Loading...</>}
+      {loading && <Loader />}
     </GifsStyled>
   );
 };
