@@ -13,7 +13,7 @@ import {
   GifActions,
   GifActionsNotConnected,
 } from "./GifItem.style";
-
+import { printPartialAddress } from "utils";
 interface GifItemProps {
   link: string;
   uploader: string;
@@ -24,6 +24,7 @@ interface GifItemProps {
   wallet: any;
   connectWallet: () => void;
 }
+
 export const GifItemView = ({
   link,
   uploader,
@@ -42,11 +43,7 @@ export const GifItemView = ({
       </div>
       <div className="gif-infos">
         <GifUploader>
-          {`${uploaderString.substr(0, 10)}...${uploaderString.substr(
-            uploaderString.length - 10,
-            uploaderString.length
-          )}`}
-          &nbsp;&nbsp;
+          {printPartialAddress(uploaderString)}
           <Button
             appearance="primary"
             width="50px"
@@ -64,7 +61,7 @@ export const GifItemView = ({
               vote(link, uploader, "up");
             }}
           >
-            <FontAwesomeIcon icon={faArrowAltCircleUp} /> ({upVoters.length})
+            <FontAwesomeIcon icon={faArrowAltCircleUp} />({upVoters.length})
           </Button>
           <Button
             appearance="primary"

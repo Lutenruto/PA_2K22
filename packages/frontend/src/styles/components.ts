@@ -9,6 +9,14 @@ export const Page = styled.div`
   position: relative;
   background-color: ${containerColor};
   min-height: 100vh;
+
+  @media (max-width: 1023px) {
+    padding: 80px 40px;
+  }
+
+  @media (max-width: 767px) {
+    padding: 80px 20px;
+  }
 `;
 
 export const MainLogo = styled.img`

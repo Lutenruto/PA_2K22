@@ -15,8 +15,11 @@ export const GifContainer = styled.div`
 
 export const GifUploader = styled.p`
   color: white;
-  display: flex;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 20px;
   justify-content: center;
+  text-align: center;
   align-items: center;
 `;
 

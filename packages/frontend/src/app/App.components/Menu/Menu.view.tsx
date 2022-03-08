@@ -17,6 +17,7 @@ import {
   WalletBalance,
 } from "./Menu.style";
 
+import { printPartialAddress } from "utils";
 type MenuViewProps = {
   connectWallet: () => void;
   walletLogout: () => void;
@@ -26,13 +27,6 @@ export const MenuView = ({ connectWallet, walletLogout }: MenuViewProps) => {
   const wallet = useSelector((state: State) => state.wallet);
 
   const [showing, setShowing] = useState(false);
-
-  function printPartialAddress(address: String) {
-    let length = address.length;
-    return (
-      address.substring(0, 4) + "..." + address.substring(length - 3, length)
-    );
-  }
 
   let connectedComponents;
   if (wallet.address !== "") {
@@ -62,7 +56,6 @@ export const MenuView = ({ connectWallet, walletLogout }: MenuViewProps) => {
         <Link to="/" onClick={() => setShowing(false)}>
           <MenuLogo alt="logo" src="/logo.svg" />
         </Link>
-        <div />
         <Link to="/marketplace" onClick={() => setShowing(false)}>
           MARKETPLACE
         </Link>

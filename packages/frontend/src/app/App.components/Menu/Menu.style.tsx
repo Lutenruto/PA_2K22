@@ -10,10 +10,6 @@ export const MenuStyled = styled.div`
   z-index: 5;
   background: #212125;
 
-  @media (max-width: 1439px) {
-    padding: 0 50px;
-  }
-
   @media (max-width: 1023px) {
     padding: 0 0;
   }
@@ -34,9 +30,10 @@ export const MenuBar = styled.div<{
   display: grid;
   grid-template-columns: ${(props) =>
     props.logged
-      ? "auto auto repeat(5, fit-content(100px))"
-      : "auto auto repeat(3, fit-content(100px)) 10px"};
+      ? "auto repeat(5, fit-content(100px))"
+      : "auto repeat(3, fit-content(100px)) 10px"};
   grid-gap: 32px;
+  justify-content: center;
   font-size: 16px;
   font-weight: 500;
   overflow: hidden;
@@ -55,25 +52,7 @@ export const MenuBar = styled.div<{
     }
   }
 
-  @media (max-width: 1439px) {
-    grid-gap: 20px;
-  }
-
   @media (max-width: 1023px) {
-    > a:first-child {
-      display: none;
-    }
-
-    grid-template-columns: ${(props) =>
-      props.logged
-        ? "auto repeat(7, fit-content(100px))"
-        : "auto repeat(8, fit-content(100px)) 180px 5px"};
-    grid-template-rows: repeat(2, 1fr);
-    grid-gap: 0px;
-    grid-column-gap: 20px;
-    justify-content: center;
-    align-items: center;
-    height: 160px;
     button {
       width: fit-content;
       padding: 0 20px;
@@ -101,14 +80,6 @@ export const MenuLogo = styled.img`
   margin: 5px 0px 5px 10px;
   width: 215px;
   display: block;
-
-  @media (max-width: 1229px) {
-    display: none;
-  }
-
-  @media (max-width: 1023px) {
-    display: block;
-  }
 `;
 export const ConnectButton = styled.button`
   font-family: "Raleway", sans-serif;
