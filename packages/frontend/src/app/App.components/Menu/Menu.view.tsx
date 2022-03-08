@@ -9,7 +9,6 @@ import {
   ConnectButton,
   ConnectButtonText,
   ConnectedButtonsContainer,
-  CustomNavbarButton,
   MenuBar,
   MenuLogo,
   MenuStyled,
@@ -39,9 +38,9 @@ export const MenuView = ({ connectWallet, walletLogout }: MenuViewProps) => {
   if (wallet.address !== "") {
     connectedComponents = (
       <ConnectedButtonsContainer>
-        <CustomNavbarButton>
+        <Link to="/profile" onClick={() => setShowing(false)}>
           <ProfileImage src="/images/profile.svg" alt="profile" />
-        </CustomNavbarButton>
+        </Link>
       </ConnectedButtonsContainer>
     );
   } else {
@@ -66,6 +65,9 @@ export const MenuView = ({ connectWallet, walletLogout }: MenuViewProps) => {
         <div />
         <Link to="/marketplace" onClick={() => setShowing(false)}>
           MARKETPLACE
+        </Link>
+        <Link to="/gifs" onClick={() => setShowing(false)}>
+          GIFS
         </Link>
         {wallet.address !== "" && (
           <>

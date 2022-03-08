@@ -70,22 +70,18 @@ export const ButtonStyled = styled.span<{
     `;
   }}
 
-  ${(props) =>
-    props.width
-      ? `width: ${props.width};`
-      : `max-width: 260px;min-width: 220px;`}
+  width: ${(props) => (props.width ? props.width : "100%")};
   max-width: 90vw;
   box-sizing: border-box;
 
   font-size: ${(props) => (props.fontSize ? `${props.fontSize}` : `16`)}px;
   line-height: ${(props) =>
     props.lineHeight ? `${props.lineHeight}` : `24`}px;
-  padding: ${(props) => (props.padding ? `${props.padding}` : `12`)}px 0;
+  padding: 5px 15px;
   font-weight: 600;
   display: block;
 
   cursor: pointer;
-  margin: ${(props) => (props.margin ? "0 30px" : "")};
   transform: skew(-21deg);
   > svg {
     margin: 11px 0;

@@ -1,4 +1,5 @@
 import { Collection } from "pages/Collection/Collection.controller";
+import { Gifs } from "pages/Gifs/Gifs.controller";
 import { Landing } from "pages/Landing/Landing.controller";
 import { Marketplace } from "pages/Marketplace/Marketplace.controller";
 import { NftExtended } from "pages/NftExtended/NftExtended.controller";
@@ -31,6 +32,9 @@ export const App = () => {
             </Route>
             <Route exact path="/marketplace">
               <Marketplace />
+            </Route>
+            <Route exact path="/gifs">
+              <Gifs />
             </Route>
             <Route exact path="/collection/:id">
               <Collection />

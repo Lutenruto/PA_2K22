@@ -34,8 +34,8 @@ export const MenuBar = styled.div<{
   display: grid;
   grid-template-columns: ${(props) =>
     props.logged
-      ? "auto auto repeat(2, fit-content(100px))"
-      : "auto auto repeat(2, fit-content(100px)) 10px"};
+      ? "auto auto repeat(5, fit-content(100px))"
+      : "auto auto repeat(3, fit-content(100px)) 10px"};
   grid-gap: 32px;
   font-size: 16px;
   font-weight: 500;
@@ -154,10 +154,6 @@ export const ConnectedButtonsContainer = styled.div`
   }
 `;
 
-export const CustomNavbarButton = styled.a`
-  cursor: pointer;
-`;
-
 export const WalletBalance = styled(Link)`
   font-family: "Raleway", sans-serif !important;
   color: #9542ff !important;
@@ -176,6 +172,7 @@ export const WalletAddress = styled.a`
   line-height: 22px !important;
   color: #f8fafc;
 
+  display: flex;
   @media (max-width: 1023px) {
     display: none;
   }

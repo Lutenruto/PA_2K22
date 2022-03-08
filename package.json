@@ -3,5 +3,11 @@
   "private": true,
   "devDependencies": {
     "lerna": "^4.0.0"
+  },
+  "dependencies": {
+    "@fortawesome/free-regular-svg-icons": "^6.0.0",
+    "@fortawesome/react-fontawesome": "^0.1.17",
+    "@project-serum/anchor": "^0.22.1",
+    "@solana/web3.js": "^1.36.0"
   }
 }
