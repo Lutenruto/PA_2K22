@@ -1,16 +1,7 @@
 import styled from "styled-components/macro";
-
-export const GifContainer = styled.div`
-  border-radius: 10px;
+import { SolanaCard } from "styles";
+export const GifContainer = styled(SolanaCard)`
   padding: 20px;
-
-  background: linear-gradient(
-    90deg,
-    rgba(96, 122, 212, 1) 0%,
-    rgba(53, 161, 180, 1) 50%,
-    rgba(2, 207, 142, 1) 100%
-  );
-  width: 100%;
 `;
 
 export const GifUploader = styled.p`

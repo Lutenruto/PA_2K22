@@ -12,11 +12,14 @@ export const Gifs = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    getGifs();
+  }, []);
+
+  const getGifs = () => {
     program.getGifList().then((gifListRes) => {
       setGifList(gifListRes);
       setLoading(false);
     });
-  }, []);
-
-  return <GifsView gifList={gifList} loading={loading} />;
+  };
+  return <GifsView gifList={gifList} loading={loading} getGifs={getGifs} />;
 };

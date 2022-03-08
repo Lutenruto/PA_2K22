@@ -5,8 +5,9 @@ import { Loader } from "app/App.components/Loader/Loader.view";
 interface GifsProps {
   gifList: any;
   loading: boolean;
+  getGifs: () => void;
 }
-export const GifsView = ({ gifList, loading }: GifsProps) => {
+export const GifsView = ({ gifList, loading, getGifs }: GifsProps) => {
   return (
     <GifsStyled>
       {!loading && (
@@ -23,6 +24,7 @@ export const GifsView = ({ gifList, loading }: GifsProps) => {
                   uploader={gifItem.userAddress}
                   upVoters={gifItem.upVoters}
                   downVoters={gifItem.downVoters}
+                  getGifs={getGifs}
                   key={key}
                 ></GifItem>
               );

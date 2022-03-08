@@ -15,8 +15,7 @@ export const ButtonStyled = styled.span<{
     let borderImage = "";
     switch (props.appearance) {
       case "primary":
-        backgroundColor =
-          "linear-gradient(95.19deg, #4934C3 5.74%, #3AD8ED 100%)";
+        backgroundColor = "black";
         textColor = "#F7F9FD";
         props.lineHeight = 28;
         break;
@@ -70,6 +69,7 @@ export const ButtonStyled = styled.span<{
     `;
   }}
 
+  border-radius: 5px;
   width: ${(props) => (props.width ? props.width : "100%")};
   max-width: 90vw;
   box-sizing: border-box;
@@ -82,7 +82,6 @@ export const ButtonStyled = styled.span<{
   display: block;
 
   cursor: pointer;
-  transform: skew(-21deg);
   > svg {
     margin: 11px 0;
     width: 24px;
@@ -102,7 +101,4 @@ export const ButtonInside = styled.div<{
   display: flex;
   align-items: center;
   justify-content: center;
-  > div {
-    transform: skew(21deg);
-  }
 `;

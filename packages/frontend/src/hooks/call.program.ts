@@ -69,9 +69,9 @@ export default function callProgram() {
           user: provider.wallet.publicKey,
         },
       });
-      console.log(`GIF successfully ${direction}voted`);
+      return true;
     } catch (error) {
-      console.log(error);
+      return false;
     }
   };
 
@@ -97,8 +97,10 @@ export default function callProgram() {
         },
         signers: [baseAccount],
       });
+      return true;
     } catch (error) {
       console.log("Error creating BaseAccount account:", error);
+      return false;
     }
   };
 

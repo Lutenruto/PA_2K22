@@ -54,3 +54,14 @@ export const Card = styled.div<{ widthOverride?: string }>`
     width: 100%;
   }
 `;
+
+export const SolanaCard = styled.div`
+  border-radius: 10px;
+  background: linear-gradient(
+    90deg,
+    rgba(96, 122, 212, 1) 0%,
+    rgba(53, 161, 180, 1) 50%,
+    rgba(2, 207, 142, 1) 100%
+  );
+  width: 100%;
+`;

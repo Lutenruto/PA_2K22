@@ -69,6 +69,7 @@ export const ModalContainer = styled.div<{ hasImage: boolean }>`
 
 export const ModalFirstLineContainer = styled.div`
   position: relative;
+  margin-bottom: 20px;
 `;
 
 export const ModalTitle = styled.p`
