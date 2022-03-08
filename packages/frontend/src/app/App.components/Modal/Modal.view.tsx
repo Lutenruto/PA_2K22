@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import * as React from 'react'
-import { useEffect, useRef } from 'react'
+import * as React from "react";
+import { useEffect, useRef } from "react";
 
 import {
   DisableBody,
@@ -12,19 +12,25 @@ import {
   ModalImgContainer,
   ModalStyled,
   ModalTitle,
-} from './Modal.style'
+} from "./Modal.style";
 
 type ModalViewProps = {
-  showing: boolean
-  title: string
-  children?: JSX.Element
-  closeCallback: () => void
-  image?: string
-}
+  showing: boolean;
+  title: string;
+  children?: JSX.Element;
+  closeCallback: () => void;
+  image?: string;
+};
 
-export const ModalView = ({ showing, title, children, closeCallback, image }: ModalViewProps) => {
-  const wrapperRef = useRef(null)
-  useOutsideAlerter(wrapperRef)
+export const ModalView = ({
+  showing,
+  title,
+  children,
+  closeCallback,
+  image,
+}: ModalViewProps) => {
+  const wrapperRef = useRef(null);
+  useOutsideAlerter(wrapperRef);
 
   function useOutsideAlerter(ref: any) {
     useEffect(() => {
@@ -33,29 +39,29 @@ export const ModalView = ({ showing, title, children, closeCallback, image }: Mo
        */
       function handleClickOutside(event: any) {
         if (ref.current && !ref.current.contains(event.target)) {
-          closeCallback()
+          closeCallback();
         }
       }
 
       // Bind the event listener
-      document.addEventListener('mousedown', handleClickOutside)
+      document.addEventListener("mousedown", handleClickOutside);
       return () => {
         // Unbind the event listener on clean up
-        document.removeEventListener('mousedown', handleClickOutside)
-      }
-    }, [ref])
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [ref]);
   }
 
   useEffect(() => {
-    document.addEventListener('keydown', closeCallback, false)
+    document.addEventListener("keydown", closeCallback, false);
 
     return () => {
-      document.removeEventListener('keydown', closeCallback, false)
-    }
-  }, [])
+      document.removeEventListener("keydown", closeCallback, false);
+    };
+  }, []);
 
   return (
-    <ModalStyled className={showing ? 'showing' : 'hidden'}>
+    <ModalStyled className={showing ? "showing" : "hidden"}>
       {showing && <DisableBody />}
       <ModalBody ref={wrapperRef}>
         {image !== undefined && (
@@ -66,11 +72,11 @@ export const ModalView = ({ showing, title, children, closeCallback, image }: Mo
         <ModalContainer hasImage={image !== undefined}>
           <ModalCross
             onClick={() => {
-              closeCallback()
+              closeCallback();
             }}
           >
             <svg width={14} height={14}>
-              <use xlinkHref="/images/sprites.svg#cross" />
+              <use xlinkHref="/icons/sprites.svg#cross" />
             </svg>
           </ModalCross>
           <ModalFirstLineContainer>
@@ -80,5 +86,5 @@ export const ModalView = ({ showing, title, children, closeCallback, image }: Mo
         </ModalContainer>
       </ModalBody>
     </ModalStyled>
-  )
-}
+  );
+};

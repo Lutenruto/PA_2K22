@@ -1,70 +1,54 @@
-import * as PropTypes from 'prop-types'
-import * as React from 'react'
+import { ReactNode } from 'react'
+import { Style } from 'react-motion'
 
-import { BUTTON, ButtonStyle, ButtonTypes, PRIMARY } from './Button.constants'
-import { ButtonIcon, ButtonLoadingIcon, ButtonStyled, ButtonText } from './Button.style'
+import { ButtonInside, ButtonStyled } from './Button.style'
 
-type ButtonViewProps = {
-  text: string
-  icon?: string
-  kind?: ButtonStyle
-  onClick?: () => void
-  clickCallback: () => void
-  clicked: boolean
-  type?: ButtonTypes
-  loading: boolean
+export interface ButtonProps {
+  appearance:
+    | 'primary'
+    | 'secondary'
+    | 'tertiary'
+    | 'primary_empty'
+    | 'gray_empty'
+    | 'orange_empty'
+    | 'primary_empty_gray'
+  width?: string
+  position?: string
+  children: ReactNode
+  clickCallback?: () => void
+  fontSize?: number
+  lineHeight?: number
+  padding?: number
+  style?: Style
+  margin?: boolean
 }
 
-export const ButtonView = ({ text, icon, kind, onClick, clickCallback, clicked, type, loading }: ButtonViewProps) => {
-  let buttonClasses = kind
-  if (clicked) buttonClasses += ' clicked'
-  if (loading) buttonClasses += ' loading'
+export const Button = ({
+  children,
+  clickCallback = () => {},
+  appearance,
+  width,
+  position,
+  fontSize,
+  lineHeight,
+  padding,
+  style,
+  margin = true,
+}: ButtonProps) => {
   return (
     <ButtonStyled
-      className={buttonClasses}
-      onClick={() => {
-        clickCallback()
-        onClick && onClick()
-      }}
-      type={type}
+      onClick={() => clickCallback()}
+      appearance={appearance}
+      width={width}
+      fontSize={fontSize}
+      lineHeight={lineHeight}
+      padding={padding}
+      style={style}
+      margin={margin}
     >
-      <ButtonText>
-        {loading ? (
-          <>
-            <div>Loading...</div>
-            <ButtonLoadingIcon className={kind}>
-              <use xlinkHref="/icons/sprites.svg#loading" />
-            </ButtonLoadingIcon>
-          </>
-        ) : (
-          <>
-            <div>{text}</div>
-            {icon && (
-              <ButtonIcon className={kind}>
-                <use xlinkHref={`/icons/sprites.svg#${icon}`} />
-              </ButtonIcon>
-            )}
-          </>
-        )}
-      </ButtonText>
+      <ButtonInside appearance={appearance} position={position}>
+        <div>{children}</div>
+      </ButtonInside>
     </ButtonStyled>
   )
-}
-
-ButtonView.propTypes = {
-  text: PropTypes.string.isRequired,
-  icon: PropTypes.string,
-  kind: PropTypes.string,
-  onClick: PropTypes.func,
-  clickCallback: PropTypes.func.isRequired,
-  clicked: PropTypes.bool.isRequired,
-  type: PropTypes.string,
-  loading: PropTypes.bool,
-}
-
-ButtonView.defaultProps = {
-  icon: undefined,
-  kind: PRIMARY,
-  type: BUTTON,
-  loading: false,
 }

@@ -1,113 +1,112 @@
-import styled, { keyframes } from 'styled-components/macro'
+import styled, { css } from "styled-components/macro";
 
-import { primaryColor, textColor, backgroundColor } from '../../../styles'
+export const ButtonStyled = styled.span<{
+  appearance: string;
+  width?: string;
+  fontSize?: number;
+  lineHeight?: number;
+  padding?: number;
+  margin?: boolean;
+}>`
+  ${(props) => {
+    let backgroundColor = "#0023FF";
+    let textColor = "#F7F9FD";
+    let border = "";
+    let borderImage = "";
+    switch (props.appearance) {
+      case "primary":
+        backgroundColor =
+          "linear-gradient(95.19deg, #4934C3 5.74%, #3AD8ED 100%)";
+        textColor = "#F7F9FD";
+        props.lineHeight = 28;
+        break;
+      case "primary_empty":
+        backgroundColor = "#101010";
+        textColor = "#F7F9FD";
+        border = "2px solid";
+        borderImage = "linear-gradient(95.19deg, #4934C3 5.74%, #3AD8ED) 1";
+        break;
+      case "primary_empty_gray":
+        backgroundColor = "#232327";
+        textColor = "#F7F9FD";
+        border = "2px solid";
+        borderImage = "linear-gradient(95.19deg, #4934C3 5.74%, #3AD8ED) 1";
+        break;
+      case "orange_empty":
+        backgroundColor = "#101010";
+        textColor = "#F7F9FD";
+        border = "2px solid";
+        borderImage =
+          "linear-gradient(95.79deg, #E72C2C 4.22%, #EFCB4A 102.88%) 1";
+        break;
+      case "gray_empty":
+        backgroundColor = "#101010";
+        textColor = "#F7F9FD";
+        border = "2px solid #61616B;";
+        break;
+      case "secondary":
+        backgroundColor = "#101010";
+        textColor = "white";
+        border = "2px solid #9443FF";
+        break;
+      case "tertiary":
+        backgroundColor = "#EFCB4A";
+        textColor = "black";
+        border = "2px solid rgba(0,0,0,0)";
+        break;
+      default:
+        backgroundColor = "#0023FF";
+        textColor = "#F7F9FD";
+        border = "2px solid rgba(0,0,0,0)";
+    }
+    return css`
+      border: ${border};
+      border-image: ${borderImage};
+      background: ${backgroundColor};
+      color: ${textColor};
+      svg {
+        fill: ${textColor};
+      }
+    `;
+  }}
 
-export const clickWave = keyframes`
-  from {
-    box-shadow: 0 0 0 0 ${primaryColor};
-  }
-  to {
-    box-shadow: 0 0 0 5px ${primaryColor}00;
-  }
-`
+  ${(props) =>
+    props.width
+      ? `width: ${props.width};`
+      : `max-width: 260px;min-width: 220px;`}
+  max-width: 90vw;
+  box-sizing: border-box;
 
-export const ButtonStyled = styled.button`
-  padding: 0;
-  height: 50px;
-  border: none;
-  font-weight: bold;
-  font-size: 14px;
+  font-size: ${(props) => (props.fontSize ? `${props.fontSize}` : `16`)}px;
+  line-height: ${(props) =>
+    props.lineHeight ? `${props.lineHeight}` : `24`}px;
+  padding: ${(props) => (props.padding ? `${props.padding}` : `12`)}px 0;
+  font-weight: 600;
+  display: block;
+
   cursor: pointer;
-  border-radius: 40px;
-  will-change: box-shadow;
-  width: 100%;
-  user-select: none;
-
-  &.clicked {
-    animation: ${clickWave} 1250ms cubic-bezier(0.19, 1, 0.22, 1);
-    animation-fill-mode: forwards;
+  margin: ${(props) => (props.margin ? "0 30px" : "")};
+  transform: skew(-21deg);
+  > svg {
+    margin: 11px 0;
+    width: 24px;
+    height: 24px;
   }
 
-  &.primary {
-    color: ${textColor};
-    background: linear-gradient(0deg, #0023ff, #0023ff), #121e34;
-    box-shadow: -10px -10px 20px rgba(8, 21, 45, 0.4), 5px 5px 15px rgba(5, 12, 27, 0.6);
+  @media (max-width: 767px) {
+    font-size: 14px;
   }
+`;
 
-  &.secondary {
-    color: ${primaryColor};
-    background-color: initial;
-    border: 1.5px solid ${primaryColor};
-  }
-
-  &.transparent {
-    color: ${textColor};
-    background-color: initial;
-  }
-
-  &.loading {
-    pointer-events: none;
-    opacity: 0.8;
-  }
-`
-
-export const ButtonText = styled.div`
+export const ButtonInside = styled.div<{
+  appearance: string;
+  position?: string;
+}>`
+  position: ${(props) => (props.position ? props.position : "relative")};
+  display: flex;
+  align-items: center;
+  justify-content: center;
   > div {
-    text-align: center;
-    margin: auto;
-    display: inline-block;
-    line-height: 24px;
-    vertical-align: top;
+    transform: skew(21deg);
   }
-`
-
-export const ButtonIcon = styled.svg`
-  width: 24px;
-  height: 24px;
-  display: inline-block;
-  vertical-align: sub;
-  margin-right: 15px;
-
-  &.primary {
-    stroke: ${backgroundColor};
-  }
-
-  &.secondary {
-    stroke: ${primaryColor};
-  }
-
-  &.transparent {
-    stroke: ${textColor};
-  }
-`
-
-const turn = keyframes`
-  100% {
-      transform: rotate(360deg);
-  }
-`
-
-export const ButtonLoadingIcon = styled.svg`
-  width: 16px;
-  height: 16px;
-  margin-top: 4px;
-  margin-left: 15px;
-  vertical-align: sub;
-  stroke: ${textColor};
-  stroke-width: 1px;
-  stroke-dashoffset: 94.248;
-  stroke-dasharray: 47.124;
-  animation: ${turn} 1.6s linear infinite forwards;
-
-  &.primary {
-    stroke: ${backgroundColor};
-  }
-
-  &.secondary {
-    stroke: ${primaryColor};
-  }
-
-  &.transparent {
-    stroke: ${textColor};
-  }
-`
+`;

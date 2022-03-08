@@ -72,7 +72,7 @@ export const ModalFirstLineContainer = styled.div`
 `;
 
 export const ModalTitle = styled.p`
-  font-family: Fira Sans;
+  font-family: "Raleway", sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
@@ -95,7 +95,7 @@ export const ModalCross = styled.span`
   right: 40px;
   cursor: pointer;
 
-  font-family: Fira Sans;
+  font-family: "Raleway", sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 24px;

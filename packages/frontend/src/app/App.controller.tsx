@@ -8,6 +8,7 @@ import React from "react";
 import { Provider } from "react-redux";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import { Menu } from "./App.components/Menu/Menu.controller";
+import { Modal } from "./App.components/Modal/Modal.controller";
 
 import { ProgressBar } from "./App.components/ProgressBar/ProgressBar.controller";
 import { Toaster } from "./App.components/Toaster/Toaster.controller";
@@ -21,6 +22,7 @@ export const App = () => {
     <Provider store={store}>
       <Router>
         <ProgressBar />
+        <Modal />
         <AppContainer>
           <Menu />
           <Switch>
