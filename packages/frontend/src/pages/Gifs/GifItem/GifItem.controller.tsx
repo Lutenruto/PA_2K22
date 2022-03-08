@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 // prettier-ignore
 import { connectWallet } from 'actions/Wallet.actions';
+import { SHOW_MODAL } from "app/App.components/Modal/Modal.actions";
 import callProgram from "hooks/call.program";
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -28,11 +29,18 @@ export const GifItem = ({
   };
 
   const tip = (link: string, uploader: string) => {
-    // Function still under development
+    dispatch({
+      type: SHOW_MODAL,
+      title: "Patience !",
+      children: (
+        <div style={{ marginTop: "20px" }}>
+          This function is still under construction :)
+        </div>
+      ),
+    });
   };
 
   const connectWalletCb = () => {
-    console.log("connecting wallet");
     dispatch(connectWallet());
   };
   return (

@@ -71,7 +71,7 @@ export default function callProgram() {
       });
       console.log(`GIF successfully ${direction}voted`);
     } catch (error) {
-      //TODO Implement error
+      console.log(error);
     }
   };
 

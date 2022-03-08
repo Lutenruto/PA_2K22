@@ -34,6 +34,7 @@ export const GifItemView = ({
   wallet,
   connectWallet,
 }: GifItemProps) => {
+  let uploaderString = uploader.toString();
   return (
     <GifContainer>
       <div className="gif">
@@ -41,15 +42,15 @@ export const GifItemView = ({
       </div>
       <div className="gif-infos">
         <GifUploader>
-          {`${uploader.substr(0, 10)}...${uploader.substr(
-            uploader.length - 10,
-            uploader.length
+          {`${uploaderString.substr(0, 10)}...${uploaderString.substr(
+            uploaderString.length - 10,
+            uploaderString.length
           )}`}
           &nbsp;&nbsp;
           <Button
             appearance="primary"
             width="50px"
-            clickCallback={() => navigator.clipboard.writeText(uploader)}
+            clickCallback={() => navigator.clipboard.writeText(uploaderString)}
           >
             <FontAwesomeIcon icon={faCopy} />
           </Button>

@@ -19,7 +19,7 @@ export const GifsView = ({ gifList, loading }: GifsProps) => {
               return (
                 <GifItem
                   link={gifItem.gifLink}
-                  uploader={gifItem.userAddress.toString()}
+                  uploader={gifItem.userAddress}
                   upVoters={gifItem.upVoters}
                   downVoters={gifItem.downVoters}
                   key={key}
