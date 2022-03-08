@@ -68,10 +68,12 @@ export const MenuBar = styled.div<{
     a:nth-child(1) {
       display: block;
     }
-    height: ${(props) => (props.showing ? "400px" : "80px")};
+    height: ${(props) => (props.showing ? "370px" : "80px")};
     grid-template-columns: auto;
-    grid-template-rows: 80px 0 repeat(6, 50px);
+    grid-template-rows: ${(props) =>
+      props.logged ? "80px repeat(5, 20px)" : "80px repeat(3, 40px)"};
     transition: height 500ms ease-in-out;
+    justify-content: center;
   }
 `;
 
@@ -102,10 +104,6 @@ export const ConnectButton = styled.button`
 
   width: 100%;
   margin: auto;
-
-  @media (max-width: 767px) {
-    display: none;
-  }
 `;
 
 export const ConnectButtonText = styled.div`
@@ -118,20 +116,18 @@ export const ConnectedButtonsContainer = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width: 37px;
+  width: 40px;
 
   @media (max-width: 767px) {
-    display: none;
+    justify-content: center;
+    align-self: center;
+    justify-self: center;
   }
 `;
 
 export const WalletBalance = styled(Link)`
   font-family: "Raleway", sans-serif !important;
   color: #9542ff !important;
-
-  @media (max-width: 767px) {
-    display: none;
-  }
 `;
 
 export const WalletAddress = styled.a`
@@ -144,8 +140,11 @@ export const WalletAddress = styled.a`
   color: #f8fafc;
 
   display: flex;
-  @media (max-width: 1023px) {
-    display: none;
+
+  @media (max-width: 767px) {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(2, fit-content(0px));
   }
 `;
 
@@ -156,8 +155,4 @@ export const AddressImage = styled.img`
 
 export const ProfileImage = styled.img`
   position: relative;
-
-  @media (max-width: 767px) {
-    display: none;
-  }
 `;
