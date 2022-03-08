@@ -33,3 +33,7 @@ export const GifActions = styled.div`
   grid-gap: 10px;
   padding: 0px 15px;
 `;
+
+export const GifActionsNotConnected = styled.div`
+  padding: 0px 15px;
+`;

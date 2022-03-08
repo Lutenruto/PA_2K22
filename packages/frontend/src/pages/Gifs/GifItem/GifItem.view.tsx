@@ -6,7 +6,13 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button } from "app/App.components/Button/Button.view";
 
-import { GifContainer, GifUploader, GifImg, GifActions } from "./GifItem.style";
+import {
+  GifContainer,
+  GifUploader,
+  GifImg,
+  GifActions,
+  GifActionsNotConnected,
+} from "./GifItem.style";
 
 interface GifItemProps {
   link: string;
@@ -15,6 +21,8 @@ interface GifItemProps {
   downVoters: [];
   vote: (link: string, uploader: string, direction: string) => void;
   tip: (link: string, uploader: string) => void;
+  wallet: any;
+  connectWallet: () => void;
 }
 export const GifItemView = ({
   link,
@@ -23,6 +31,8 @@ export const GifItemView = ({
   downVoters,
   vote,
   tip,
+  wallet,
+  connectWallet,
 }: GifItemProps) => {
   return (
     <GifContainer>
@@ -45,32 +55,42 @@ export const GifItemView = ({
           </Button>
         </GifUploader>
       </div>
-      <GifActions>
-        <Button
-          appearance="primary"
-          clickCallback={() => {
-            vote(link, uploader, "up");
-          }}
-        >
-          <FontAwesomeIcon icon={faArrowAltCircleUp} /> ({upVoters.length})
-        </Button>
-        <Button
-          appearance="primary"
-          clickCallback={() => {
-            vote(link, uploader, "down");
-          }}
-        >
-          <FontAwesomeIcon icon={faArrowAltCircleDown} /> ({downVoters.length})
-        </Button>
-        <Button
-          appearance="primary"
-          clickCallback={() => {
-            tip(link, uploader);
-          }}
-        >
-          <img src="images/solana_logo.png" alt="Solana logo" width="15" />
-        </Button>
-      </GifActions>
+      {wallet.address !== "" && (
+        <GifActions>
+          <Button
+            appearance="primary"
+            clickCallback={() => {
+              vote(link, uploader, "up");
+            }}
+          >
+            <FontAwesomeIcon icon={faArrowAltCircleUp} /> ({upVoters.length})
+          </Button>
+          <Button
+            appearance="primary"
+            clickCallback={() => {
+              vote(link, uploader, "down");
+            }}
+          >
+            <FontAwesomeIcon icon={faArrowAltCircleDown} /> ({downVoters.length}
+            )
+          </Button>
+          <Button
+            appearance="primary"
+            clickCallback={() => {
+              tip(link, uploader);
+            }}
+          >
+            <img src="images/solana_logo.png" alt="Solana logo" width="15" />
+          </Button>
+        </GifActions>
+      )}
+      {wallet.address === "" && (
+        <GifActionsNotConnected>
+          <Button appearance="primary" clickCallback={() => connectWallet()}>
+            Connect Wallet
+          </Button>
+        </GifActionsNotConnected>
+      )}
     </GifContainer>
   );
 };

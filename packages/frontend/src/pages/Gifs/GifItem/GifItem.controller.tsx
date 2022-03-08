@@ -1,7 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 // prettier-ignore
-import callProgram from 'hooks/call.program';
+import { connectWallet } from 'actions/Wallet.actions';
+import callProgram from "hooks/call.program";
 import * as React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { State } from "reducers";
 import { GifItemView } from "./GifItem.view";
 
 interface GifItemProps {
@@ -16,8 +19,9 @@ export const GifItem = ({
   upVoters,
   downVoters,
 }: GifItemProps) => {
-  console.log(link, uploader, upVoters, downVoters);
   const program = callProgram();
+  const wallet = useSelector((state: State) => state.wallet);
+  const dispatch = useDispatch();
 
   const vote = async (link: string, uploader: string, direction: string) => {
     await program.voteGif(link, uploader, direction);
@@ -27,6 +31,10 @@ export const GifItem = ({
     // Function still under development
   };
 
+  const connectWalletCb = () => {
+    console.log("connecting wallet");
+    dispatch(connectWallet());
+  };
   return (
     <GifItemView
       link={link}
@@ -35,6 +43,8 @@ export const GifItem = ({
       downVoters={downVoters}
       vote={vote}
       tip={tip}
+      wallet={wallet}
+      connectWallet={connectWalletCb}
     />
   );
 };
