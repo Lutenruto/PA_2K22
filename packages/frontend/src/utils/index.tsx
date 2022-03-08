@@ -9,4 +9,8 @@ function printPartialAddress(address: String) {
   );
 }
 
-export { checkGifLink, printPartialAddress };
+function roundBalance(balance: number) {
+  return balance.toFixed(2);
+}
+
+export { checkGifLink, printPartialAddress, roundBalance };

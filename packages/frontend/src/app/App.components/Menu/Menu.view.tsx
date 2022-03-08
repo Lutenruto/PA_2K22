@@ -17,7 +17,7 @@ import {
   WalletBalance,
 } from "./Menu.style";
 
-import { printPartialAddress } from "utils";
+import { printPartialAddress, roundBalance } from "utils";
 type MenuViewProps = {
   connectWallet: () => void;
   walletLogout: () => void;
@@ -65,7 +65,7 @@ export const MenuView = ({ connectWallet, walletLogout }: MenuViewProps) => {
         {wallet.address !== "" && (
           <>
             <WalletBalance style={{ pointerEvents: "none" }} to="">
-              {wallet.currencyAmount}&nbsp;SOL
+              {roundBalance(wallet.currencyAmount)}&nbsp;SOL
             </WalletBalance>
             <WalletAddress
               onClick={() => {

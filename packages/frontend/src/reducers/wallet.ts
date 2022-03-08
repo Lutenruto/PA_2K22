@@ -24,10 +24,19 @@ const walletDefaultState: WalletState = {
 export function wallet(state = walletDefaultState, action: any): WalletState {
   switch (action.type) {
     case SET_ADDRESS:
-      return {
-        ...state,
-        address: action.address,
-      };
+      if (action.currencyAmount !== undefined) {
+        return {
+          ...state,
+          address: action.address,
+          currencyAmount: action.currencyAmount,
+        };
+      } else {
+        return {
+          ...state,
+          address: action.address,
+        };
+      }
+
     case SET_CURRENCYAMOUNT:
       return {
         ...state,

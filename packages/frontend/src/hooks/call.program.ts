@@ -115,11 +115,26 @@ export default function callProgram() {
     }
   };
 
+  const getBalance = async (pubKey: any) => {
+    try {
+      const connection = new Connection(
+        network,
+        opts.preflightCommitment as any
+      );
+      let balance = await connection.getBalance(pubKey);
+      return balance / 10 ** 9;
+    } catch (err) {
+      console.error(err);
+      return;
+    }
+  };
+
   return {
     sendGif: (url: string) => sendGif(url),
     voteGif: (link: string, sender: any, direction: any) =>
       voteGif(link, sender, direction),
     createGifAccount: () => createGifAccount(),
     getGifList: () => getGifList(),
+    getBalance,
   };
 }
