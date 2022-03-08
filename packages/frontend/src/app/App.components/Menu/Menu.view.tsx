@@ -54,7 +54,7 @@ export const MenuView = ({ connectWallet, walletLogout }: MenuViewProps) => {
       <Hamburger showing={showing} setShowing={() => setShowing(!showing)} />
       <MenuBar showing={showing} logged={wallet.address !== ""}>
         <Link to="/" onClick={() => setShowing(false)}>
-          <MenuLogo alt="logo" src="/logo.svg" />
+          <MenuLogo alt="logo" src="/logo.png" />
         </Link>
         <Link to="/marketplace" onClick={() => setShowing(false)}>
           MARKETPLACE
