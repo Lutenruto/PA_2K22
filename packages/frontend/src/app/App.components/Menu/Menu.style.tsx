@@ -30,8 +30,8 @@ export const MenuBar = styled.div<{
   display: grid;
   grid-template-columns: ${(props) =>
     props.logged
-      ? "auto repeat(5, fit-content(100px))"
-      : "auto repeat(3, fit-content(100px)) 10px"};
+      ? "auto repeat(6, fit-content(100px))"
+      : "auto repeat(4, fit-content(100px)) 10px"};
   grid-gap: 32px;
   justify-content: center;
   font-size: 16px;
@@ -71,7 +71,7 @@ export const MenuBar = styled.div<{
     height: ${(props) => (props.showing ? "370px" : "80px")};
     grid-template-columns: auto;
     grid-template-rows: ${(props) =>
-      props.logged ? "80px repeat(5, 20px)" : "80px repeat(3, 40px)"};
+      props.logged ? "80px repeat(6, 20px)" : "80px repeat(4, 40px)"};
     transition: height 500ms ease-in-out;
     justify-content: center;
   }

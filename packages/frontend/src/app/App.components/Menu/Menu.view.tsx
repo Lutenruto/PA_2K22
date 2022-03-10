@@ -62,6 +62,9 @@ export const MenuView = ({ connectWallet, walletLogout }: MenuViewProps) => {
         <Link to="/gifs" onClick={() => setShowing(false)}>
           GIFS
         </Link>
+        <Link to="/mint" onClick={() => setShowing(false)}>
+          MINT
+        </Link>
         {wallet.address !== "" && (
           <>
             <WalletBalance style={{ pointerEvents: "none" }} to="">
