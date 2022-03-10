@@ -14,7 +14,6 @@ export const Profile = () => {
   const [assets, setAssets] = useState<any>([]);
   const getAssets = async () => {
     const res = await program.getNfts(wallet.address);
-    console.log(res);
     if (res.length > 0) {
       setAssets(res);
     }
@@ -23,5 +22,5 @@ export const Profile = () => {
   useEffect(() => {
     getAssets();
   }, [wallet]);
-  return <ProfileView assets={assets} />;
+  return <ProfileView assets={assets} wallet={wallet} />;
 };
