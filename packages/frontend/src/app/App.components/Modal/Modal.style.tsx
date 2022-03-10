@@ -43,7 +43,7 @@ export const ModalImgContainer = styled.div`
   justify-content: flex-end;
   align-items: center;
 
-  padding: 0 57px;
+  padding: 20px 57px;
   background: black;
   @media (max-width: 1023px) {
     display: none;

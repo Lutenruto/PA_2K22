@@ -15,7 +15,8 @@ export const ButtonStyled = styled.span<{
     let borderImage = "";
     switch (props.appearance) {
       case "primary":
-        backgroundColor = "black";
+        backgroundColor =
+          "linear-gradient(90deg,rgba(96, 122, 212, 1) 0%,rgba(53, 161, 180, 1) 50%,rgba(2, 207, 142, 1) 100%)";
         textColor = "#F7F9FD";
         props.lineHeight = 28;
         break;

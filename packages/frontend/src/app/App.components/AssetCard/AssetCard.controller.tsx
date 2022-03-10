@@ -3,7 +3,9 @@
 import axios from 'axios';
 import * as React from "react";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 
+import { showModalImg } from "../Modal/Modal.actions";
 import { AssetCardView } from "./AssetCard.view";
 
 interface AssetCardProps {
@@ -11,14 +13,24 @@ interface AssetCardProps {
 }
 export const AssetCard = ({ nftData }: AssetCardProps) => {
   const [assetAllInfos, setAssetAllInfos] = useState<any>();
-
+  const dispatch = useDispatch();
   const getNftTokenData = async () => {
-    setAssetAllInfos(await axios.get(nftData.data.uri));
+    let res = await axios.get(nftData.data.uri);
+    (res as any).mint = nftData.mint;
+    setAssetAllInfos(res);
+  };
+
+  const showModalImgCb = (
+    title: string,
+    children: JSX.Element,
+    img: string
+  ) => {
+    dispatch(showModalImg(title, children, img));
   };
 
   useEffect(() => {
     getNftTokenData();
   }, []);
 
-  return <AssetCardView data={assetAllInfos} />;
+  return <AssetCardView data={assetAllInfos} showModal={showModalImgCb} />;
 };
