@@ -45,6 +45,7 @@ export const ModalImgContainer = styled.div`
 
   padding: 20px 57px;
   background: black;
+  border-radius: 20px 0px 0px 20px;
   @media (max-width: 1023px) {
     display: none;
   }
@@ -59,8 +60,8 @@ export const ModalContainer = styled.div<{ hasImage: boolean }>`
   position: relative;
   padding: ${(props) =>
     props.hasImage ? "52px 30px 40px 30px" : "24px 30px 40px 30px"};
-  background: linear-gradient(-135deg, transparent 30px, #232327 30px);
-
+  background: #232327;
+  border-radius: 0px 20px 20px 0px;
   @media (max-width: 1023px) {
     padding: 24px 20px;
     width: 100%;
