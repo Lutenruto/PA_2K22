@@ -47,7 +47,6 @@ export const ButtonStyled = styled.span<{
       case "secondary":
         backgroundColor = "#101010";
         textColor = "white";
-        border = "2px solid #9443FF";
         break;
       case "tertiary":
         backgroundColor = "#EFCB4A";

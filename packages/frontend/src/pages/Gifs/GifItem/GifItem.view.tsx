@@ -5,15 +5,16 @@ import {
 } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button } from "app/App.components/Button/Button.view";
+import { printPartialAddress } from "utils";
 
 import {
-  GifContainer,
-  GifUploader,
-  GifImg,
   GifActions,
   GifActionsNotConnected,
+  GifContainer,
+  GifImg,
+  GifUploader,
 } from "./GifItem.style";
-import { printPartialAddress } from "utils";
+
 interface GifItemProps {
   link: string;
   uploader: string;
@@ -45,7 +46,7 @@ export const GifItemView = ({
         <GifUploader>
           {printPartialAddress(uploaderString)}
           <Button
-            appearance="primary"
+            appearance="secondary"
             width="50px"
             clickCallback={() => navigator.clipboard.writeText(uploaderString)}
           >
@@ -56,15 +57,15 @@ export const GifItemView = ({
       {wallet.address !== "" && (
         <GifActions>
           <Button
-            appearance="primary"
+            appearance="secondary"
             clickCallback={() => {
               vote(link, uploader, "up");
             }}
           >
-            <FontAwesomeIcon icon={faArrowAltCircleUp} />({upVoters.length})
+            <FontAwesomeIcon icon={faArrowAltCircleUp} /> ({upVoters.length})
           </Button>
           <Button
-            appearance="primary"
+            appearance="secondary"
             clickCallback={() => {
               vote(link, uploader, "down");
             }}
@@ -73,7 +74,7 @@ export const GifItemView = ({
             )
           </Button>
           <Button
-            appearance="primary"
+            appearance="secondary"
             clickCallback={() => {
               tip(link, uploader);
             }}
@@ -84,7 +85,7 @@ export const GifItemView = ({
       )}
       {wallet.address === "" && (
         <GifActionsNotConnected>
-          <Button appearance="primary" clickCallback={() => connectWallet()}>
+          <Button appearance="secondary" clickCallback={() => connectWallet()}>
             Connect Wallet
           </Button>
         </GifActionsNotConnected>
