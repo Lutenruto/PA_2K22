@@ -63,7 +63,7 @@ export const MenuView = ({ connectWallet, walletLogout }: MenuViewProps) => {
           GIFS
         </Link>
         <Link to="/mint" onClick={() => setShowing(false)}>
-          MINT
+          CREATE
         </Link>
         {wallet.address !== "" && (
           <>
