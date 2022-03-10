@@ -1,6 +1,6 @@
+import { createConnectionConfig, getParsedNftAccountsByOwner } from "@nfteyez/sol-rayz";
 import { Program, Provider, web3 } from "@project-serum/anchor";
 import { clusterApiUrl, Connection, PublicKey } from "@solana/web3.js";
-
 import idl from "assets/idl.json";
 import kp from "assets/keypair.json";
 
@@ -131,6 +131,21 @@ export default function callProgram() {
     }
   };
 
+  const getNfts = async (pubKey: any) => {
+    try {
+      const connect = createConnectionConfig(clusterApiUrl("devnet"));
+
+      const nfts = await getParsedNftAccountsByOwner({
+        publicAddress: pubKey.toString(),
+        connection: connect,
+      });
+
+      return nfts;
+    }catch(err){
+      console.log(err)
+      return []
+    }
+  }
   return {
     sendGif: (url: string) => sendGif(url),
     voteGif: (link: string, sender: any, direction: any) =>
@@ -138,5 +153,6 @@ export default function callProgram() {
     createGifAccount: () => createGifAccount(),
     getGifList: () => getGifList(),
     getBalance,
+    getNfts
   };
 }

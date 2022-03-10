@@ -1,5 +1,8 @@
 import { ProfileStyled } from "./Profile.style";
 
-export const ProfileView = () => {
+interface ProfileViewProps {
+  assets: any;
+}
+export const ProfileView = ({ assets }: ProfileViewProps) => {
   return <ProfileStyled>Profile page</ProfileStyled>;
 };
