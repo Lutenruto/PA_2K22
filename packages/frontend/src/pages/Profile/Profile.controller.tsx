@@ -1,9 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 // prettier-ignore
-import callProgram from 'hooks/call.program';
+import { connectWallet } from 'actions/Wallet.actions';
+import callProgram from "hooks/call.program";
 import * as React from "react";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { State } from "reducers";
 
 import { ProfileView } from "./Profile.view";
@@ -12,6 +13,10 @@ export const Profile = () => {
   const program = callProgram();
   const wallet = useSelector((state: State) => state.wallet);
   const [assets, setAssets] = useState<any>([]);
+  const dispatch = useDispatch();
+  const connectWalletCb = () => {
+    dispatch(connectWallet());
+  };
   const getAssets = async () => {
     const res = await program.getNfts(wallet.address);
     if (res.length > 0) {
@@ -22,5 +27,11 @@ export const Profile = () => {
   useEffect(() => {
     getAssets();
   }, [wallet]);
-  return <ProfileView assets={assets} wallet={wallet} />;
+  return (
+    <ProfileView
+      assets={assets}
+      wallet={wallet}
+      connectWallet={connectWalletCb}
+    />
+  );
 };

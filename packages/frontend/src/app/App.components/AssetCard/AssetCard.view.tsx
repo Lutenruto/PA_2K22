@@ -19,7 +19,6 @@ interface AssetCardProps {
 export const AssetCardView = ({ data, showModal }: AssetCardProps) => {
   const history = useHistory();
   const [hovering, setHovering] = useState(false);
-  console.log(data);
   if (data === undefined) {
     return <Loader />;
   }

@@ -35,3 +35,16 @@ export const ProfileAssetsContainer = styled.div`
     padding: 20px 80px 20px 20px;
   }
 `;
+
+export const ProfileNotConnected = styled.div``;
+
+export const ProfileNotConnectedFirstLine = styled.div`
+  font-family: "Raleway";
+  font-size: 30px;
+  text-align: center;
+  margin-top: 20px;
+`;
+export const ProfileNotConnectedSecondLine = styled.div`
+  width: 200px;
+  margin: 20px auto;
+`;
