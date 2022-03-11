@@ -15,7 +15,6 @@ interface ProfileViewProps {
   wallet: any;
 }
 export const ProfileView = ({ assets, wallet }: ProfileViewProps) => {
-  console.log(wallet);
   if (wallet.address === "") {
     return <NotConnected />;
   }

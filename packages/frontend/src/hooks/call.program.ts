@@ -3,7 +3,7 @@ import { Program, Provider, web3 } from "@project-serum/anchor";
 import { clusterApiUrl, Connection, PublicKey } from "@solana/web3.js";
 import idl from "assets/idl.json";
 import kp from "assets/keypair.json";
-
+import * as splToken from '@solana/spl-token'
 // SystemProgram is a reference to the Solana runtime!
 const { SystemProgram } = web3;
 
@@ -146,6 +146,93 @@ export default function callProgram() {
       return []
     }
   }
+
+  const mintNft = async () => {
+    try{
+      const connection = new Connection(
+        network,
+        opts.preflightCommitment as any
+      );
+      console.log("Generating wallet")
+      var fromWallet = web3.Keypair.generate();
+      console.log("Airdropping");
+      var fromAirdropSignature = await connection.requestAirdrop(
+        fromWallet.publicKey,
+        web3.LAMPORTS_PER_SOL
+      );
+      console.log("Airdrop signature", fromAirdropSignature)
+      //wait for airdrop confirmation
+      await connection.confirmTransaction(fromAirdropSignature);
+
+      console.log("Confirmed airdrop signature")
+      //create new token mint
+
+      console.log("Creating mint")
+      let mint = await splToken.Token.createMint(
+        connection,
+        fromWallet,
+        fromWallet.publicKey,
+        null,
+        9,
+        splToken.TOKEN_PROGRAM_ID
+      );
+
+      console.log("Token minted")
+      //get the token account of the fromWallet Solana address, if it does not exist, create it
+      let fromTokenAccount = await mint.getOrCreateAssociatedAccountInfo(
+        fromWallet.publicKey
+      );
+
+      // Generate a new wallet to receive newly minted token
+      var toWallet = baseAccount
+
+      //get the token account of the toWallet Solana address, if it does not exist, create it
+      var toTokenAccount = await mint.getOrCreateAssociatedAccountInfo(
+        toWallet.publicKey
+      );
+
+
+      //minting 1 new token to the "fromTokenAccount" account we just returned/created
+      await mint.mintTo(
+        fromTokenAccount.address, //who it goes to
+        fromWallet.publicKey, // minting authority
+        [], // multisig
+        1 // how many
+      );
+
+      console.log("Set authority")
+      await mint.setAuthority(
+        mint.publicKey,
+        null,
+        "MintTokens",
+        fromWallet.publicKey,
+        []
+      );
+
+      // Add token transfer instructions to transaction
+      var transaction = new web3.Transaction().add(
+        splToken.Token.createTransferInstruction(
+          splToken.TOKEN_PROGRAM_ID,
+          fromTokenAccount.address,
+          toTokenAccount.address,
+          fromWallet.publicKey,
+          [],
+          1
+        )
+      );
+
+      // Sign transaction, broadcast, and confirm
+      var signature = await web3.sendAndConfirmTransaction(
+        connection,
+        transaction,
+        [fromWallet],
+        { commitment: "confirmed" }
+      );
+      console.log("SIGNATURE", signature);
+    }catch(err){
+      console.log(err)
+    }
+  }
   return {
     sendGif: (url: string) => sendGif(url),
     voteGif: (link: string, sender: any, direction: any) =>
@@ -153,6 +240,7 @@ export default function callProgram() {
     createGifAccount: () => createGifAccount(),
     getGifList: () => getGifList(),
     getBalance,
-    getNfts
+    getNfts,
+    mintNft,
   };
 }

@@ -8,5 +8,11 @@ import { MintView } from "./Mint.view";
 export const Mint = () => {
   const program = callProgram();
   const wallet = useSelector((state: State) => state.wallet);
-  return <MintView wallet={wallet} />;
+
+  const mintNftCb = () => {
+    console.log("Launching nft function");
+    program.mintNft();
+  };
+
+  return <MintView wallet={wallet} mintNft={mintNftCb} />;
 };

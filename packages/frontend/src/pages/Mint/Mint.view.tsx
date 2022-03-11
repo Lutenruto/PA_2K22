@@ -11,8 +11,9 @@ import {
 
 interface MintViewProps {
   wallet: any;
+  mintNft: () => void;
 }
-export const MintView = ({ wallet }: MintViewProps) => {
+export const MintView = ({ wallet, mintNft }: MintViewProps) => {
   if (wallet.address === "") {
     return <NotConnected />;
   }
@@ -28,7 +29,14 @@ export const MintView = ({ wallet }: MintViewProps) => {
           <MintInput type="text" placeholder="My cool NFT" />
         </MintRow>
         <MintRow>
-          <Button appearance="primary">Create !</Button>
+          <Button
+            appearance="primary"
+            clickCallback={() => {
+              mintNft();
+            }}
+          >
+            Create !
+          </Button>
         </MintRow>
       </MintForm>
     </MintStyled>

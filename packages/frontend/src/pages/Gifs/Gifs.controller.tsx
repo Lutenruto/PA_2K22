@@ -11,15 +11,15 @@ export const Gifs = () => {
   const [gifList, setGifList] = useState([] as any);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    getGifs();
-  }, []);
-
   const getGifs = () => {
     program.getGifList().then((gifListRes) => {
       setGifList(gifListRes);
       setLoading(false);
     });
   };
+
+  useEffect(() => {
+    getGifs();
+  }, []);
   return <GifsView gifList={gifList} loading={loading} getGifs={getGifs} />;
 };
