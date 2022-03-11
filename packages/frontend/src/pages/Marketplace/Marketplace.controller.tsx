@@ -10,10 +10,15 @@ export const Marketplace = () => {
   const [loading, setLoading] = React.useState(true);
 
   const getOffers = async () => {
-    let res = await api.get("/sell");
-    setOffers(res.data);
-    setLoading(false);
+    try {
+      let res = await api.get("/sell");
+      setOffers(res.data);
+      setLoading(false);
+    } catch (err) {
+      setLoading(false);
+    }
   };
+
   React.useEffect(() => {
     getOffers();
   }, []);

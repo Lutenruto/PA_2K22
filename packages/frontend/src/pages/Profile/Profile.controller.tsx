@@ -13,7 +13,6 @@ export const Profile = () => {
   const [assets, setAssets] = useState<any>([]);
   const getAssets = async () => {
     const res = await program.getNfts(wallet.address);
-    console.log(res);
     if (res.length > 0) {
       setAssets(res);
     }

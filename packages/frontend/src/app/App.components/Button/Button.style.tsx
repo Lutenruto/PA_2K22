@@ -13,12 +13,20 @@ export const ButtonStyled = styled.span<{
     let textColor = "#F7F9FD";
     let border = "";
     let borderImage = "";
+    let opacity = 1;
     switch (props.appearance) {
       case "primary":
         backgroundColor =
           "linear-gradient(90deg,rgba(96, 122, 212, 1) 0%,rgba(53, 161, 180, 1) 50%,rgba(2, 207, 142, 1) 100%)";
         textColor = "#F7F9FD";
         props.lineHeight = 28;
+        break;
+      case "disabled":
+        backgroundColor =
+          "linear-gradient(90deg,rgba(96, 122, 212, 1) 0%,rgba(53, 161, 180, 1) 50%,rgba(2, 207, 142, 1) 100%)";
+        textColor = "#F7F9FD";
+        props.lineHeight = 28;
+        opacity = 0.5;
         break;
       case "primary_empty":
         backgroundColor = "#101010";
@@ -63,6 +71,7 @@ export const ButtonStyled = styled.span<{
       border-image: ${borderImage};
       background: ${backgroundColor};
       color: ${textColor};
+      opacity: ${opacity};
       svg {
         fill: ${textColor};
       }

@@ -1,26 +1,27 @@
-import { ReactNode } from 'react'
-import { Style } from 'react-motion'
+import { ReactNode } from "react";
+import { Style } from "react-motion";
 
-import { ButtonInside, ButtonStyled } from './Button.style'
+import { ButtonInside, ButtonStyled } from "./Button.style";
 
 export interface ButtonProps {
   appearance:
-    | 'primary'
-    | 'secondary'
-    | 'tertiary'
-    | 'primary_empty'
-    | 'gray_empty'
-    | 'orange_empty'
-    | 'primary_empty_gray'
-  width?: string
-  position?: string
-  children: ReactNode
-  clickCallback?: () => void
-  fontSize?: number
-  lineHeight?: number
-  padding?: number
-  style?: Style
-  margin?: boolean
+    | "primary"
+    | "secondary"
+    | "tertiary"
+    | "primary_empty"
+    | "gray_empty"
+    | "orange_empty"
+    | "primary_empty_gray"
+    | "disabled";
+  width?: string;
+  position?: string;
+  children: ReactNode;
+  clickCallback?: () => void;
+  fontSize?: number;
+  lineHeight?: number;
+  padding?: number;
+  style?: Style;
+  margin?: boolean;
 }
 
 export const Button = ({
@@ -50,5 +51,5 @@ export const Button = ({
         <div>{children}</div>
       </ButtonInside>
     </ButtonStyled>
-  )
-}
+  );
+};

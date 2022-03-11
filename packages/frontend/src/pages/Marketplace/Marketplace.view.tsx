@@ -3,6 +3,7 @@ import { AssetCard } from "app/App.components/AssetCard/AssetCard.controller";
 import {
   MarketplaceStyled,
   MarketplaceItemsContainer,
+  MarketplaceNoItems,
 } from "./Marketplace.style";
 
 interface MarketplaceViewProps {
@@ -12,11 +13,21 @@ interface MarketplaceViewProps {
 
 export const MarketplaceView = ({ offers, loading }: MarketplaceViewProps) => {
   if (loading) {
-    return <Loader />;
+    return (
+      <MarketplaceStyled>
+        <Loader />
+      </MarketplaceStyled>
+    );
   }
 
   if (offers.length === 0) {
-    return <MarketplaceStyled>No items to display</MarketplaceStyled>;
+    return (
+      <MarketplaceStyled>
+        <MarketplaceNoItems>
+          There is no items to display at the moment
+        </MarketplaceNoItems>
+      </MarketplaceStyled>
+    );
   }
 
   return (

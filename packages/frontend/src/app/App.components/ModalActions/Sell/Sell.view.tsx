@@ -28,7 +28,14 @@ export const SellView = ({ item, wallet, sellItem }: SellViewProps) => {
         This item will no longer appear in your wallet while in sell
       </SellSecondLine>
       <SellSecondLine>
-        <Button appearance="primary" clickCallback={() => sellItem(price)}>
+        <Button
+          appearance={price > 0 ? "primary" : "disabled"}
+          clickCallback={() => {
+            if (price > 0) {
+              sellItem(price);
+            }
+          }}
+        >
           Sell this item
         </Button>
       </SellSecondLine>
