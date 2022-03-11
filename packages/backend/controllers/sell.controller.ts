@@ -46,8 +46,8 @@ export class SellController {
     return new Sell(sell);
   }
 
-  async deleteOne(idNbr: number): Promise<Boolean> {
-    const filter = { id: parseInt(idNbr.toString()) };
+  async deleteOne(id: string): Promise<Boolean> {
+    const filter = { id: id };
     let bid = await this.database.deleteOne(filter);
     return bid.deletedCount > 0;
   }

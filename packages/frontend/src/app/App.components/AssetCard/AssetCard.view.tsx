@@ -3,6 +3,7 @@ import { useHistory } from "react-router";
 
 import { Button } from "../Button/Button.view";
 import { Loader } from "../Loader/Loader.view";
+import { Sell } from "../ModalActions/Sell/Sell.controller";
 import {
   AssetCardButtonContainer,
   AssetCardData,
@@ -12,11 +13,12 @@ import {
 } from "./AssetCard.style";
 
 interface AssetCardProps {
+  nftData: any;
   data: any;
   showModal: (title: string, children: JSX.Element, img: string) => void;
 }
 
-export const AssetCardView = ({ data, showModal }: AssetCardProps) => {
+export const AssetCardView = ({ nftData, data, showModal }: AssetCardProps) => {
   const history = useHistory();
   const [hovering, setHovering] = useState(false);
   if (data === undefined) {
@@ -41,7 +43,11 @@ export const AssetCardView = ({ data, showModal }: AssetCardProps) => {
           <Button
             appearance="primary"
             clickCallback={() => {
-              showModal("Selling : " + data.data.name, <></>, data.data.image);
+              showModal(
+                "Selling : " + data.data.name,
+                <Sell item={nftData} />,
+                data.data.image
+              );
             }}
           >
             Sell

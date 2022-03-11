@@ -32,5 +32,11 @@ export const AssetCard = ({ nftData }: AssetCardProps) => {
     getNftTokenData();
   }, []);
 
-  return <AssetCardView data={assetAllInfos} showModal={showModalImgCb} />;
+  return (
+    <AssetCardView
+      nftData={nftData}
+      data={assetAllInfos}
+      showModal={showModalImgCb}
+    />
+  );
 };

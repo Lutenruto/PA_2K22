@@ -65,3 +65,30 @@ export const SolanaCard = styled.div`
   );
   width: 100%;
 `;
+
+
+export const InputContainer = styled.div`
+  display: grid;
+  grid-template-columns: calc(100% - 50px) 30px;
+  grid-gap: 20px;
+  justify-content: center;
+  background: black;
+  padding: 10px;
+  border-radius: 5px;
+  width: fit-content;
+`;
+export const InputStyled = styled.input`
+  height: 30px;
+  background: #232327;
+  border: 0;
+  border-radius: 5px;
+  padding: 5px 10px;
+
+  &&::placeholder {
+    font-family: "Raleway";
+    color: gray;
+  }
+`;
+export const InputImg = styled.img`
+  width: 100%;
+`;

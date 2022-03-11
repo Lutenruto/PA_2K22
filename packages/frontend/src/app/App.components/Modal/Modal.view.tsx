@@ -52,11 +52,16 @@ export const ModalView = ({
     }, [ref]);
   }
 
+  function keydownHandler(key: KeyboardEvent) {
+    if (key.key === "Escape") {
+      closeCallback();
+    }
+  }
   useEffect(() => {
-    document.addEventListener("keydown", closeCallback, false);
+    document.addEventListener("keydown", keydownHandler, false);
 
     return () => {
-      document.removeEventListener("keydown", closeCallback, false);
+      document.removeEventListener("keydown", keydownHandler, false);
     };
   }, []);
 
