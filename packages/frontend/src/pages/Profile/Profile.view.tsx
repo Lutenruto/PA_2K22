@@ -26,7 +26,7 @@ export const ProfileView = ({ assets, wallet }: ProfileViewProps) => {
       </ProfileFirstLine>
       <ProfileAssetsContainer>
         {assets.map((asset: any, key: number) => {
-          return <AssetCard nftData={asset} key={key} />;
+          return <AssetCard nftData={asset} key={key} type="sell" />;
         })}
       </ProfileAssetsContainer>
     </ProfileStyled>

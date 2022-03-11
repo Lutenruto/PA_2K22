@@ -34,7 +34,7 @@ export const MarketplaceView = ({ offers, loading }: MarketplaceViewProps) => {
     <MarketplaceStyled>
       <MarketplaceItemsContainer>
         {offers.map((offer: any, key: number) => {
-          return <AssetCard nftData={offer.item} key={key} />;
+          return <AssetCard nftData={offer} key={key} type="buy" />;
         })}
       </MarketplaceItemsContainer>
     </MarketplaceStyled>

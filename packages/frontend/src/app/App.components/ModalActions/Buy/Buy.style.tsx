@@ -1,7 +1,6 @@
 import styled from "styled-components/macro";
-import { Page } from "styles";
 
-export const BuyStyled = styled(Page)``;
+export const BuyStyled = styled.div``;
 
 export const BuyFirstLine = styled.div`
   font-family: "Raleway";
@@ -11,5 +10,5 @@ export const BuyFirstLine = styled.div`
 `;
 export const BuySecondLine = styled.div`
   width: 200px;
-  margin: 20px auto;
+  margin-top: 20px;
 `;

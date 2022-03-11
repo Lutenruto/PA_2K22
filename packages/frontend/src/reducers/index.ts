@@ -3,6 +3,7 @@ import { combineReducers } from "redux";
 import { loading, LoadingState } from "./loading";
 import { ModalState, modal } from "./modal";
 import { progressBar, ProgressBarState } from "./progressBar";
+import { ReloadState, reload } from "./reload";
 import { toaster, ToasterState } from "./toaster";
 import { WalletState, wallet } from "./wallet";
 
@@ -11,7 +12,8 @@ export const reducers = combineReducers({
   progressBar,
   toaster,
   wallet,
-  modal
+  modal,
+  reload
 });
 
 export interface State {
@@ -20,4 +22,5 @@ export interface State {
   toaster: ToasterState;
   wallet: WalletState;
   modal: ModalState;
+  reload: ReloadState;
 }

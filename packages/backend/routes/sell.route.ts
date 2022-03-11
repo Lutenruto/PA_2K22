@@ -70,7 +70,6 @@ router.delete("/", async function(req, res) {
     } else {
         res.status(204);
         res.json(sell);
-        console.log(sell)
     }
 });
 

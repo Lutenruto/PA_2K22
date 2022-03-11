@@ -3,6 +3,7 @@ import { useHistory } from "react-router";
 
 import { Button } from "../Button/Button.view";
 import { Loader } from "../Loader/Loader.view";
+import { Buy } from "../ModalActions/Buy/Buy.controller";
 import { Sell } from "../ModalActions/Sell/Sell.controller";
 import {
   AssetCardButtonContainer,
@@ -16,9 +17,15 @@ interface AssetCardProps {
   nftData: any;
   data: any;
   showModal: (title: string, children: JSX.Element, img: string) => void;
+  type: string;
 }
 
-export const AssetCardView = ({ nftData, data, showModal }: AssetCardProps) => {
+export const AssetCardView = ({
+  nftData,
+  data,
+  showModal,
+  type,
+}: AssetCardProps) => {
   const history = useHistory();
   const [hovering, setHovering] = useState(false);
   if (data === undefined) {
@@ -40,18 +47,34 @@ export const AssetCardView = ({ nftData, data, showModal }: AssetCardProps) => {
       <AssetCardData hovering={hovering}>
         <AssetCardName>{data.data.name}</AssetCardName>
         <AssetCardButtonContainer>
-          <Button
-            appearance="primary"
-            clickCallback={() => {
-              showModal(
-                "Selling : " + data.data.name,
-                <Sell item={nftData} />,
-                data.data.image
-              );
-            }}
-          >
-            Sell
-          </Button>
+          {type === "sell" && (
+            <Button
+              appearance="primary"
+              clickCallback={() => {
+                showModal(
+                  "Selling : " + data.data.name,
+                  <Sell item={nftData} />,
+                  data.data.image
+                );
+              }}
+            >
+              Sell
+            </Button>
+          )}
+          {type === "buy" && (
+            <Button
+              appearance="primary"
+              clickCallback={() => {
+                showModal(
+                  "Buying : " + data.data.name,
+                  <Buy item={nftData} />,
+                  data.data.image
+                );
+              }}
+            >
+              Buy
+            </Button>
+          )}
         </AssetCardButtonContainer>
       </AssetCardData>
     </AssetCardStyled>

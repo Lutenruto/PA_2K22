@@ -10,13 +10,23 @@ import { AssetCardView } from "./AssetCard.view";
 
 interface AssetCardProps {
   nftData: any;
+  type: "buy" | "sell";
 }
-export const AssetCard = ({ nftData }: AssetCardProps) => {
+export const AssetCard = ({ nftData, type }: AssetCardProps) => {
   const [assetAllInfos, setAssetAllInfos] = useState<any>();
   const dispatch = useDispatch();
   const getNftTokenData = async () => {
-    let res = await axios.get(nftData.data.uri);
-    (res as any).mint = nftData.mint;
+    let url;
+    let mint;
+    if (nftData.data === undefined) {
+      url = nftData.item.data.uri;
+      mint = nftData.item.mint;
+    } else {
+      url = nftData.data.uri;
+      mint = nftData.mint;
+    }
+    let res = await axios.get(url);
+    (res as any).mint = mint;
     setAssetAllInfos(res);
   };
 
@@ -37,6 +47,7 @@ export const AssetCard = ({ nftData }: AssetCardProps) => {
       nftData={nftData}
       data={assetAllInfos}
       showModal={showModalImgCb}
+      type={type}
     />
   );
 };

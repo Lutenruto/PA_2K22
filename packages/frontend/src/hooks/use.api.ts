@@ -55,8 +55,8 @@ export default function useApi() {
       callApi(MethodTypes.Put, url, data).catch((reason) =>
         handleError(reason)
       ),
-    delete: (url: string) =>
-      callApi(MethodTypes.Delete, url, null).catch((reason) =>
+    delete: (url: string, data = {}) =>
+      callApi(MethodTypes.Delete, url, data).catch((reason) =>
         handleError(reason)
       ),
     getRaw: (url: string) =>
