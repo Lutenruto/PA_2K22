@@ -1,6 +1,6 @@
 import {Express} from "express";
-import bidRouter from './bid.route';
+import sellRouter from './sell.route';
 
 export function buildRoutes(app: Express) {
-    app.use("/bid",bidRouter);
+    app.use("/sell", sellRouter);
 }
