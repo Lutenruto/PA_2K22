@@ -7,13 +7,8 @@ import cors from 'cors';
 const app = express();
 
 app.use(express.json());
-const allowedOrigins = ['*'];
 
-const options: cors.CorsOptions = {
-  origin: allowedOrigins
-};
-
-app.use(cors(options));
+app.use(cors());
 
 buildRoutes(app);
 
