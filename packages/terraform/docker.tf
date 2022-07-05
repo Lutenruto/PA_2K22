@@ -25,6 +25,12 @@ resource "docker_image" "mongodb" {
   name = "mongo:latest"
 }
 
+resource "docker_network" "private_network" {
+  name       = "my_network"
+  driver     = "bridge"
+  attachable = true
+}
+
 resource "docker_container" "mongodb" {
   name  = "mongodb_container"
   image = docker_image.mongodb.latest
@@ -34,17 +40,28 @@ resource "docker_container" "mongodb" {
     external = 27017
     protocol = "tcp"
   }
+  networks_advanced {
+    name    = docker_network.private_network.name
+    aliases = ["docknet"]
+  }
 }
 
 resource "docker_container" "backend" {
   name  = "backend_container"
   image = docker_image.backend.latest
-  env   = ["DB_HOST=${var.DB_HOST}", "DB_USER=${var.DB_USER}", "DB_PASSWORD=${var.DB_PASSWORD}", "DB_NAME=${var.DB_NAME}", "DB_PORT=${var.MONGO_PORT}", "PORT=${var.BACKEND_PORT}]"]
+  env   = ["DB_HOST=${var.DB_HOST}", "DB_USER=${var.DB_USER}", "DB_PASSWORD=${var.DB_PASSWORD}", "DB_NAME=${var.DB_NAME}", "DB_PORT=${var.MONGO_PORT}", "PORT=${var.BACKEND_PORT}"]
   ports {
     internal = var.BACKEND_PORT
     external = var.BACKEND_PORT
     protocol = "tcp"
   }
+  networks_advanced {
+    name    = docker_network.private_network.name
+    aliases = ["docknet"]
+  }
+  depends_on = [
+    docker_container.mongodb
+  ]
 }
 
 resource "docker_container" "frontend" {

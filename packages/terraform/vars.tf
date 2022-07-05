@@ -15,7 +15,7 @@ variable "DB_NAME" {
 
 variable "DB_HOST" {
   type    = string
-  default = "mongodb"
+  default = "mongodb_container"
 }
 
 variable "BACKEND_PORT" {
