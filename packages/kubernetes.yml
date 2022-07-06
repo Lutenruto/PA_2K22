@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: node-app
-        image: ./frontend/Dockerfile
+        image: lutenruto/frontend:latest
         ports:
         - containerPort: 3000
