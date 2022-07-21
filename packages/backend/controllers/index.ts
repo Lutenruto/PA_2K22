@@ -1,1 +1,1 @@
-export * from './bid.controller';
+export * from './sell.controller';

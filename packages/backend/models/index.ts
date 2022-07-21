@@ -1,1 +1,1 @@
-export * from './bid.model';
+export * from './sell.model';
