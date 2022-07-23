@@ -14,7 +14,7 @@ export class WalletController {
      this.keypair = Keypair.fromSecretKey(byte_array);    
   }
 
-  async getWallet(): Promise<any> {
+  async getWallet(): Promise<Keypair> {
     console.log(this.keypair);  
     return this.keypair;
   }
