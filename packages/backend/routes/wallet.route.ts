@@ -11,5 +11,11 @@ router.get("/get-wallet", async function(req, res)  {
     res.json({wallet : wallet});
 });
 
+router.get("/get-wallet-balance", async function (req, res) {
+  var controller = new WalletController();
+  const balance = await controller.getWalletBalance();
+  res.json({ balance: balance + " SOL" });
+});
+
 
 export default router;
